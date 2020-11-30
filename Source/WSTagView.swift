@@ -79,11 +79,13 @@ open class WSTagView: UIView, UITextInputTraits {
 
     open var selected: Bool = false {
         didSet {
-            if selected && !isFirstResponder {
-                _ = becomeFirstResponder()
-            }
-            else if !selected && isFirstResponder {
-                _ = resignFirstResponder()
+            if !allowsMultipleSelection {
+                if selected && !isFirstResponder {
+                    _ = becomeFirstResponder()
+                }
+                else if !selected && isFirstResponder {
+                    _ = resignFirstResponder()
+                }
             }
             updateContent(animated: true)
         }
@@ -101,6 +103,9 @@ open class WSTagView: UIView, UITextInputTraits {
     public var isSecureTextEntry: Bool = false
 
     // MARK: - Initializers
+    
+    public var allowsMultipleSelection: Bool = false
+    public var removable: Bool = true
 
     public init(tag: WSTag) {
         super.init(frame: CGRect.zero)
@@ -120,6 +125,7 @@ open class WSTagView: UIView, UITextInputTraits {
 
         self.displayText = tag.text
         updateLabelText()
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
 
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapGestureRecognizer))
         addGestureRecognizer(tapRecognizer)
@@ -225,7 +231,7 @@ open class WSTagView: UIView, UITextInputTraits {
 
     // MARK: - Gesture Recognizers
     @objc func handleTapGestureRecognizer(_ sender: UITapGestureRecognizer) {
-        if selected {
+        if selected && !allowsMultipleSelection {
             return
         }
         onDidRequestSelection?(self)
