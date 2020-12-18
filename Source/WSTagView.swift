@@ -10,7 +10,7 @@ import UIKit
 
 open class WSTagView: UIView, UITextInputTraits {
 
-    public let textLabel = UILabel()
+    let textLabel = UILabel()
 
     open var displayText: String = "" {
         didSet {
@@ -104,8 +104,8 @@ open class WSTagView: UIView, UITextInputTraits {
 
     // MARK: - Initializers
     
-    public var allowsMultipleSelection: Bool = false
-    public var removable: Bool = true
+    public var allowsMultipleSelection: Bool = true
+    public var removable: Bool = false
 
     public init(tag: WSTag) {
         super.init(frame: CGRect.zero)
@@ -154,16 +154,16 @@ open class WSTagView: UIView, UITextInputTraits {
             withDuration: 0.2,
             animations: { [weak self] in
                 self?.updateColors()
-                if self?.selected ?? false {
-                    self?.transform = CGAffineTransform(scaleX: 1.15, y: 1.15)
-                }
+//                if self?.selected ?? false {
+//                    self?.transform = CGAffineTransform(scaleX: 1.15, y: 1.15)
+//                }
             },
             completion: { [weak self] _ in
-                if self?.selected ?? false {
-                    UIView.animate(withDuration: 0.1) { [weak self] in
-                        self?.transform = CGAffineTransform.identity
-                    }
-                }
+//                if self?.selected ?? false {
+//                    UIView.animate(withDuration: 0.1) { [weak self] in
+//                        self?.transform = CGAffineTransform.identity
+//                    }
+//                }
             }
         )
     }

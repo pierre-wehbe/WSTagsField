@@ -210,7 +210,7 @@ open class WSTagsField: UIScrollView {
         return false
     }
 
-    open var allowsMultipleSelection: Bool = false {
+    open var allowsMultipleSelection: Bool = true {
         didSet {
             tagViews.forEach { $0.allowsMultipleSelection = allowsMultipleSelection }
         }
