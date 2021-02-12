@@ -10,7 +10,7 @@ import UIKit
 
 open class WSTagView: UIView, UITextInputTraits {
 
-    let textLabel = UILabel()
+    public let textLabel = UILabel()
 
     open var displayText: String = "" {
         didSet {
