@@ -561,10 +561,10 @@ open class WSTagsField: UIScrollView {
             }
         }
 
-        if tagView.selected {
-            tagView.onDidRequestDelete?(tagView, nil)
-            return
-        }
+//         if tagView.selected {
+//             tagView.onDidRequestDelete?(tagView, nil)
+//             return
+//         }
 
         if tagView.selected {
             onDidSelectTagView?(self, tagView)
